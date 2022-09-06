@@ -121,7 +121,11 @@ const MuiOtpInput = React.forwardRef(
       }
 
       if (character !== '') {
-        manageCaretForNextInput(currentInputIndex)
+        if (newValue.length < (length as number)) {
+          manageCaretForNextInput(newValue.length - 1)
+        } else {
+          manageCaretForNextInput(currentInputIndex)
+        }
       } else if (newValue[currentInputIndex]) {
         selectInputByIndex(currentInputIndex)
       } else {
