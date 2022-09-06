@@ -18,7 +18,7 @@ const HomepageHeader = () => {
         <DocusaurusImageUrl width={100} height={100} />
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className={clsx('hero__subtitle', styles.subtitle)}>
-          An OTP input designed for the React library{' '}
+          A One-Time Password input designed for the React library{' '}
           <Link target="_blank" href="https://mui.com">
             MUI
           </Link>

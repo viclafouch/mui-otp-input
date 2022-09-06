@@ -1,6 +1,6 @@
 {
   "name": "mui-otp-input",
-  "description": "An OTP input designed for the React library MUI",
+  "description": "A One-Time Password input designed for the React library MUI",
   "author": "Victor de la Fouchardiere <victor.delafouchardiere@gmail.com> (https://github.com/viclafouch)",
   "license": "MIT",
   "bugs": {
