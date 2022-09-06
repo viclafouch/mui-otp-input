@@ -25,8 +25,14 @@ const App = () => {
       <Controller
         name="otp"
         control={control}
-        render={({ field }) => (
-          <MuiOtpInput {...field} length={6} />
+        rules={{ validate: (value) => value.length === 6 }}
+        render={({ field, fieldState }) => (
+          <Box>
+            <MuiOtpInput sx={{ gap: 1 }} {...field} length={6} />
+            {fieldState.invalid ? (
+              <FormHelperText error>OTP invalid</FormHelperText>
+            ) : null}
+          </Box>
         )}
       />
      <div>
@@ -38,5 +44,4 @@ const App = () => {
   )
 }
 ```
-
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-hook-form-with-mui-tel-input-o530m7?fontsize=14&hidenavigation=1&theme=dark)
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-hook-form-with-mui-one-time-password-input-651h4g?theme=dark)

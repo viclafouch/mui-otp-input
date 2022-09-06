@@ -52,7 +52,7 @@ const config = {
         respectPrefersColorScheme: false
       },
       navbar: {
-        title: 'MUI otp input',
+        title: 'MUI OTP input',
         logo: {
           alt: 'MUI otp input',
           src: 'img/logo.svg'

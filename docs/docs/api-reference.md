@@ -42,7 +42,7 @@ const handleChange = (value) => {
 Choose the number of inputs to display, it also represents the length of the final value.
 
 ```tsx
-<MuiChipsInput length={6} />
+<MuiOtpInput length={6} />
 ```
 
 
@@ -93,5 +93,5 @@ While not explicitly documented, the props of the MUI **[TextField](https://mui.
 See: https://mui.com/material-ui/api/text-field/
 
 ```jsx
-<MuiTelInput TextFieldsProps={{ disabled: true, size: 'small', placeholder: '-' }} />
+<MuiOtpInput TextFieldsProps={{ disabled: true, size: 'small', placeholder: '-' }} />
 ```
