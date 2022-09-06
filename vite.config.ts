@@ -27,6 +27,9 @@ export default defineConfig({
         globals: {
           react: 'React',
           'react/jsx-runtime': 'jsxRuntime',
+          '@mui/material/Box': 'Box',
+          '@mui/material/TextField': 'TextField',
+          '@mui/material/styles': 'styles',
         }
       }
     }
