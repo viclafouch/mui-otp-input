@@ -70,7 +70,7 @@ const config = {
             position: 'right'
           },
           {
-            href: 'https://www.npmjs.com/package/mui-otp-input',
+            href: 'https://www.npmjs.com/package/mui-one-time-password-input',
             label: 'NPM',
             position: 'right'
           }

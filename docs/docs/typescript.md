@@ -10,7 +10,7 @@ This package is written in **TypeScript**. So you don't need to create your own 
 
 ```tsx
 import React from 'react'
-import { MuiOtpInput } from 'mui-otp-input'
+import { MuiOtpInput } from 'mui-one-time-password-input'
 
 const MyComponent = () => {
   const [value, setValue] = React.useState<string>('')

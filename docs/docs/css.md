@@ -23,7 +23,7 @@ For example: target the `.MuiTelInput-TextField` global class name to customize 
 
 ```jsx
 import { styled } from 'styled-component' // or emotion
-import { MuiOtpInput } from 'mui-otp-input'
+import { MuiOtpInput } from 'mui-one-time-password-input'
 
 const MuiOtpInputStyled = styled(MuiOtpInput)`
   display: flex;

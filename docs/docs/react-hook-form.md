@@ -6,7 +6,7 @@ Here an example if you want to plug `MuiOtpInput` to your form using [React Hook
 import React from "react";
 import ReactDOM from "react-dom";
 import Button from "@mui/material/Button";
-import { MuiOtpInput } from "mui-otp-input";
+import { MuiOtpInput } from "mui-one-time-password-input";
 import { Controller, useForm } from "react-hook-form";
 
 const App = () => {

@@ -18,8 +18,8 @@ export default defineConfig({
     minify: true,
     lib: {
       entry: path.resolve(__dirname, 'src/index.tsx'),
-      name: 'mui-otp-input',
-      fileName: format => `mui-otp-input.${format}.js`
+      name: 'mui-one-time-password-input',
+      fileName: format => `mui-one-time-password-input.${format}.js`
     },
     rollupOptions: {
       output: {

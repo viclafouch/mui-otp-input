@@ -1,5 +1,5 @@
 {
-  "name": "mui-otp-input",
+  "name": "mui-one-time-password-input",
   "description": "A One-Time Password input designed for the React library MUI",
   "author": "Victor de la Fouchardiere <victor.delafouchardiere@gmail.com> (https://github.com/viclafouch)",
   "license": "MIT",
@@ -11,13 +11,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/mui-otp-input.umd.js",
-  "module": "./dist/mui-otp-input.es.js",
+  "main": "./dist/mui-one-time-password-input.umd.js",
+  "module": "./dist/mui-one-time-password-input.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/mui-otp-input.es.js",
-      "require": "./dist/mui-otp-input.umd.js"
+      "import": "./dist/mui-one-time-password-input.es.js",
+      "require": "./dist/mui-one-time-password-input.umd.js"
     }
   },
   "repository": {

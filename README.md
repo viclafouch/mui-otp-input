@@ -6,7 +6,7 @@
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/viclafouch/mui-otp-input/blob/main/LICENSE)
 ![ts](https://badgen.net/badge/Built%20With/TypeScript/blue)
-[![npm](https://img.shields.io/npm/v/mui-otp-input)](https://www.npmjs.com/package/mui-otp-input)
+[![npm](https://img.shields.io/npm/v/mui-one-time-password-input)](https://www.npmjs.com/package/mui-one-time-password-input)
 
 <div align="center">
   <img src="https://github.com/viclafouch/mui-otp-input/blob/main/mui-otp-input.gif" width="100%" />
@@ -19,17 +19,17 @@
 
 ```
 // with npm
-npm install mui-otp-input
+npm install mui-one-time-password-input
 
 // with yarn
-yarn add mui-otp-input
+yarn add mui-one-time-password-input
 ```
 
 ## Usage
 
 ```jsx
 import React from 'react'
-import { MuiOtpInput } from 'mui-otp-input'
+import { MuiOtpInput } from 'mui-one-time-password-input'
 
 const MyComponent = () => {
   const [otp, setOtp] = React.useState('')

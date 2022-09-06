@@ -6,11 +6,11 @@ sidebar_position: 1
 
 ## Install
 ```bash
-npm install mui-otp-input --save
+npm install mui-one-time-password-input --save
 ```
 or you can use **yarn**
 ```bash
-yarn add mui-otp-input
+yarn add mui-one-time-password-input
 ```
 
 We have completed installing the package.
@@ -21,7 +21,7 @@ Here is a simple usage for using the component:
 
 ```jsx
 import React from 'react'
-import { MuiOtpInput } from 'mui-otp-input'
+import { MuiOtpInput } from 'mui-one-time-password-input'
 
 const MyComponent = () => {
   const [otp, setOtp] = React.useState('')
