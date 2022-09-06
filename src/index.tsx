@@ -28,8 +28,17 @@ const MuiOtpInput = React.forwardRef(
       TextFieldsProps,
       onComplete,
       validateChar,
+      className,
       ...restBoxProps
     } = props
+
+    const {
+      onPaste,
+      onFocus,
+      onKeyDown,
+      className: TextFieldClassName,
+      ...restTextFieldsProps
+    } = TextFieldsProps || {}
 
     const valueSplitted: ValueSplitted = getFilledArray(
       length as number,
@@ -123,9 +132,10 @@ const MuiOtpInput = React.forwardRef(
     const handleOneInputFocus = (event: React.FocusEvent<HTMLInputElement>) => {
       event.preventDefault()
       event.target.select()
+      onFocus?.(event)
     }
 
-    const handleOneInputKeyPress = (
+    const handleOneInputKeyDown = (
       event: React.KeyboardEvent<HTMLInputElement>
     ) => {
       const inputElement = event.target as HTMLInputElement
@@ -143,6 +153,7 @@ const MuiOtpInput = React.forwardRef(
         event.preventDefault()
         selectInputByIndex(currentInputIndex + 1)
       }
+      onKeyDown?.(event)
     }
 
     const handleOneInputPaste = (
@@ -173,6 +184,7 @@ const MuiOtpInput = React.forwardRef(
       } else {
         blurInputByIndex(currentInputIndex)
       }
+      onPaste?.(event)
     }
 
     return (
@@ -181,23 +193,27 @@ const MuiOtpInput = React.forwardRef(
         gap="20px"
         alignItems="center"
         ref={propRef}
+        className={`MuiOtpInput-Box ${className || ''}`}
         {...restBoxProps}
       >
         {valueSplitted.map(({ character, inputRef }, index) => {
           return (
             <TextFieldBox
               autoComplete="one-time-code"
-              {...TextFieldsProps}
               value={character}
               inputRef={inputRef}
+              className={`MuiOtpInput-TextField MuiOtpInput-TextField-${
+                index + 1
+              } ${TextFieldClassName || ''}`}
               onPaste={handleOneInputPaste}
               onFocus={handleOneInputFocus}
               onChange={handleOneInputChange}
-              onKeyDown={handleOneInputKeyPress}
+              onKeyDown={handleOneInputKeyDown}
               // We use index as the order can't be moved
               // We can't use the value as it can be duplicated
               // eslint-disable-next-line react/no-array-index-key
               key={index}
+              {...restTextFieldsProps}
             />
           )
         })}
