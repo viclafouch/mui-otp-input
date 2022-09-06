@@ -6,6 +6,12 @@
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/viclafouch/mui-otp-input/blob/main/LICENSE)
 ![ts](https://badgen.net/badge/Built%20With/TypeScript/blue)
+[![npm](https://img.shields.io/npm/v/mui-otp-input)](https://www.npmjs.com/package/mui-otp-input)
+
+<div align="center">
+  <img src="https://github.com/viclafouch/mui-otp-input/blob/main/mui-otp-input.gif" width="100%" />
+</div>
+
 
 </div>
 
@@ -21,11 +27,24 @@ yarn add mui-otp-input
 
 ## Usage
 
-WIP...
+```jsx
+import React from 'react'
+import { MuiOtpInput } from 'mui-otp-input'
 
-## Documentation
+const MyComponent = () => {
+  const [otp, setOtp] = React.useState('')
 
-WIP...
+  const handleChange = (newValue) => {
+    setOtp(newValue)
+  }
+
+  return (
+    <MuiOtpInput value={otp} onChange={handleChange} />
+  )
+}
+```
+
+## [Documentation](https://viclafouch.github.io/mui-otp-input/)
 
 ## Changelog
 

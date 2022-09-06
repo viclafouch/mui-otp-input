@@ -31,7 +31,7 @@ const MyComponent = () => {
   }
 
   return (
-    <MuiOtpInput value={phone} onChange={handleChange} />
+    <MuiOtpInput value={otp} onChange={handleChange} />
   )
 }
 ```

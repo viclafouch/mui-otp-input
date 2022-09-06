@@ -12,7 +12,7 @@ export default {
 const theme = createTheme()
 
 export const Primary: ComponentStory<typeof MuiOtpInput> = () => {
-  const [value, setValue] = React.useState<string>('1234')
+  const [value, setValue] = React.useState<string>('')
 
   const handleChange = (newValue: string) => {
     setValue(newValue)
@@ -24,7 +24,7 @@ export const Primary: ComponentStory<typeof MuiOtpInput> = () => {
         length={5}
         sx={{ width: 300 }}
         gap={1}
-        TextFieldsProps={{ type: 'text', size: 'small', placeholder: '-' }}
+        TextFieldsProps={{ type: 'text', size: 'medium', placeholder: '-' }}
         value={value}
         onChange={handleChange}
       />
