@@ -75,18 +75,15 @@ const MuiOtpInput = React.forwardRef(
       valueSplitted[inputIndex]?.inputRef.current?.focus()
     }
 
-    const blurInputByIndex = (inputIndex: number) => {
-      valueSplitted[inputIndex]?.inputRef.current?.blur()
-    }
-
     const selectInputByIndex = (inputIndex: number) => {
       valueSplitted[inputIndex]?.inputRef.current?.select()
     }
 
     const manageCaretForNextInput = (currentInputIndex: number) => {
       if (currentInputIndex + 1 === length) {
-        blurInputByIndex(currentInputIndex)
-      } else if (valueSplitted[currentInputIndex + 1].character) {
+        return
+      }
+      if (valueSplitted[currentInputIndex + 1].character) {
         selectInputByIndex(currentInputIndex + 1)
       } else {
         focusInputByIndex(currentInputIndex + 1)
@@ -181,12 +178,12 @@ const MuiOtpInput = React.forwardRef(
       onChange?.(newValue)
       if (newValue.length === length) {
         onComplete?.(newValue)
+        focusInputByIndex(length - 1)
+        return
       }
 
       if (characterIndexEmpty !== -1) {
         focusInputByIndex(characterIndexEmpty)
-      } else {
-        blurInputByIndex(currentInputIndex)
       }
       onPaste?.(event)
     }
