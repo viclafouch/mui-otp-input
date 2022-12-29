@@ -45,6 +45,17 @@ Choose the number of inputs to display, it also represents the length of the fin
 <MuiOtpInput length={6} />
 ```
 
+## `numbersOnly` 
+
+- Type: `boolean`
+- Default: `false`
+
+Whether to allow only numeric inputs or not.
+
+```tsx
+<MuiOtpInput numbersOnly />
+```
+
 
 ## `onComplete`
 

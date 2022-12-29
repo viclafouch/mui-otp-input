@@ -12,6 +12,7 @@ export interface BaseMuiOtpInputProps {
   value?: string
   length?: number
   TextFieldsProps?: TextFieldProps
+  numbersOnly?: boolean
   onComplete?: (value: string) => void
   validateChar?: (character: string, index: number) => boolean
   onChange?: (value: string) => void

@@ -29,6 +29,7 @@ const MuiOtpInput = React.forwardRef(
       onComplete,
       validateChar,
       className,
+      numbersOnly,
       ...restBoxProps
     } = props
 
@@ -107,6 +108,11 @@ const MuiOtpInput = React.forwardRef(
         !validateChar(character, currentInputIndex)
       ) {
         return
+      }
+      if (numbersOnly) {
+        const regex = /[0-9]+/
+        const result = regex.test(character)
+        if (!result) return
       }
 
       const newValue = replaceCharOfValue(currentInputIndex, character)
@@ -226,6 +232,7 @@ const MuiOtpInput = React.forwardRef(
 MuiOtpInput.defaultProps = {
   value: '',
   length: 4,
+  numbersOnly: false,
   validateChar: () => {
     return true
   },
