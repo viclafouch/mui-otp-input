@@ -29,6 +29,7 @@ const MyComponent = () => {
       onChange={handleChange}
       onComplete={handleComplete}
       length={8}
+      autoFocus
       validateChar={(character: string, index: number) => true}
     />
   )

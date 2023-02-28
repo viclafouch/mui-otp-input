@@ -22,6 +22,7 @@ export const Primary: ComponentStory<typeof MuiOtpInput> = () => {
     <ThemeProvider theme={theme}>
       <MuiOtpInput
         length={5}
+        autoFocus
         sx={{ width: 300 }}
         gap={1}
         TextFieldsProps={{ type: 'text', size: 'medium', placeholder: '-' }}

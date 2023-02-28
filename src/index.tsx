@@ -24,6 +24,7 @@ const MuiOtpInput = React.forwardRef(
     const {
       value,
       length,
+      autoFocus,
       onChange,
       TextFieldsProps,
       onComplete,
@@ -200,6 +201,7 @@ const MuiOtpInput = React.forwardRef(
         {valueSplitted.map(({ character, inputRef }, index) => {
           return (
             <TextFieldBox
+              autoFocus={autoFocus ? index === 0 : false}
               autoComplete="one-time-code"
               value={character}
               inputRef={inputRef}
@@ -226,6 +228,7 @@ const MuiOtpInput = React.forwardRef(
 MuiOtpInput.defaultProps = {
   value: '',
   length: 4,
+  autoFocus: false,
   validateChar: () => {
     return true
   },

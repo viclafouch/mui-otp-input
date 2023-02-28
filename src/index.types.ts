@@ -3,7 +3,7 @@ import type { TextFieldProps as MuiTextFieldProps } from '@mui/material/TextFiel
 
 type TextFieldProps = Omit<
   MuiTextFieldProps,
-  'onChange' | 'select' | 'multiline' | 'defaultValue' | 'value'
+  'onChange' | 'select' | 'multiline' | 'defaultValue' | 'value' | 'autoFocus'
 >
 
 type BoxProps = Omit<MuiBoxProps, 'onChange'>
@@ -11,6 +11,7 @@ type BoxProps = Omit<MuiBoxProps, 'onChange'>
 export interface BaseMuiOtpInputProps {
   value?: string
   length?: number
+  autoFocus?: boolean
   TextFieldsProps?: TextFieldProps
   onComplete?: (value: string) => void
   validateChar?: (character: string, index: number) => boolean

@@ -64,6 +64,19 @@ const handleComplete = (value) => {
 <MuiOtpInput length={4} onComplete={handleComplete} />
 ```
 
+
+## `autoFocus`
+
+- Type: `boolean`
+- Default: `false`
+
+Choose to auto focus the first input.
+
+```tsx
+<MuiOtpInput autoFocus />
+```
+
+
 ## `validateChar`
 
 - Type: `(value: string, index: number) => boolean`
