@@ -36,4 +36,14 @@ describe('components/MuiOtpInput', () => {
     expect(testUtils.getInputElementByIndex(2).value).toBe('')
     expect(testUtils.getInputElementByIndex(3).value).toBe('')
   })
+
+  test('should not focus first input by default', () => {
+    render(<MuiOtpInput value="abcd" />)
+    expect(testUtils.getInputElementByIndex(0)).not.toHaveFocus()
+  })
+
+  test('should focus first input according to the autoFocus prop', () => {
+    render(<MuiOtpInput value="abcd" autoFocus />)
+    expect(testUtils.getInputElementByIndex(0)).toHaveFocus()
+  })
 })
