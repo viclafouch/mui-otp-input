@@ -1,6 +1,6 @@
 import React from 'react'
-import Box from '@mui/material/Box'
 import TextFieldBox from '@components/TextFieldBox/TextFieldBox'
+import Box from '@mui/material/Box'
 import { KEYBOARD_KEY } from '@shared/constants/event'
 import {
   getFilledArray,
@@ -9,7 +9,6 @@ import {
   updateIndex
 } from '@shared/helpers/array'
 import { split } from '@shared/helpers/string'
-
 import type { BaseMuiOtpInputProps, MuiOtpInputProps } from './index.types'
 
 export type { MuiOtpInputProps }

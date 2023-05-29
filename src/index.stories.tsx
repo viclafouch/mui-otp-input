@@ -1,7 +1,6 @@
 import React from 'react'
 import { createTheme, ThemeProvider } from '@mui/material'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-
 import { MuiOtpInput } from './index'
 
 export default {

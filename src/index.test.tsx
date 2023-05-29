@@ -1,9 +1,7 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-
 import { MuiOtpInput } from './index'
 import * as testUtils from './testUtils'
-
 import '@testing-library/jest-dom'
 
 describe('components/MuiOtpInput', () => {
