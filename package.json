@@ -16,8 +16,14 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/mui-one-time-password-input.es.js",
-      "require": "./dist/mui-one-time-password-input.umd.js"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/mui-one-time-password-input.es.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/mui-one-time-password-input.umd.js"
+      }
     }
   },
   "repository": {
