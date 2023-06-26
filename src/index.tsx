@@ -76,7 +76,11 @@ const MuiOtpInput = React.forwardRef(
     }
 
     const selectInputByIndex = (inputIndex: number) => {
-      valueSplitted[inputIndex]?.inputRef.current?.select()
+      if (inputIndex === -1) {
+        valueSplitted[valueSplitted.length - 1]?.inputRef.current?.select()
+      } else {
+        valueSplitted[inputIndex]?.inputRef.current?.select()
+      }
     }
 
     const manageCaretForNextInput = (currentInputIndex: number) => {
@@ -153,6 +157,12 @@ const MuiOtpInput = React.forwardRef(
       } else if (KEYBOARD_KEY.right === event.key) {
         event.preventDefault()
         selectInputByIndex(currentInputIndex + 1)
+      } else if (KEYBOARD_KEY.home === event.key) {
+        event.preventDefault()
+        selectInputByIndex(0)
+      } else if (KEYBOARD_KEY.end === event.key) {
+        event.preventDefault()
+        selectInputByIndex(-1)
       }
       onKeyDown?.(event)
     }
