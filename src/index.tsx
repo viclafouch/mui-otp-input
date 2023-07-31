@@ -9,6 +9,7 @@ import {
   updateIndex
 } from '@shared/helpers/array'
 import { split } from '@shared/helpers/string'
+import { useEvent } from '@shared/hooks/useEvent'
 import type { MuiOtpInputProps } from './index.types'
 
 export type { MuiOtpInputProps }
@@ -35,6 +36,15 @@ const MuiOtpInput = React.forwardRef(
       className,
       ...restBoxProps
     } = props
+    const initialValue = React.useRef(value)
+    const onCallbackEvent = useEvent(onComplete)
+
+    const matchIsCompletedEvent = useEvent((filledStrings: string) => {
+      return {
+        isCompleted: filledStrings.length >= length,
+        finalValue: filledStrings.slice(0, length)
+      }
+    })
 
     const {
       onPaste,
@@ -44,6 +54,16 @@ const MuiOtpInput = React.forwardRef(
       placeholder,
       ...restTextFieldsProps
     } = TextFieldsProps || {}
+
+    React.useEffect(() => {
+      const { isCompleted, finalValue } = matchIsCompletedEvent(
+        initialValue.current
+      )
+
+      if (isCompleted) {
+        onCallbackEvent(finalValue)
+      }
+    }, [length, onCallbackEvent, matchIsCompletedEvent])
 
     const valueSplitted: ValueSplitted = getFilledArray(
       length as number,
@@ -127,8 +147,10 @@ const MuiOtpInput = React.forwardRef(
 
       onChange?.(newValue)
 
-      if (newValue.length === length) {
-        onComplete?.(newValue)
+      const { isCompleted, finalValue } = matchIsCompletedEvent(newValue)
+
+      if (isCompleted) {
+        onComplete?.(finalValue)
       }
 
       if (character !== '') {
@@ -203,14 +225,12 @@ const MuiOtpInput = React.forwardRef(
       const newValue = joinArrayStrings(characters)
       onChange?.(newValue)
 
-      if (newValue.length === length) {
-        onComplete?.(newValue)
+      const { isCompleted, finalValue } = matchIsCompletedEvent(newValue)
+
+      if (isCompleted) {
+        onComplete?.(finalValue)
         focusInputByIndex(length - 1)
-
-        return
-      }
-
-      if (characterIndexEmpty !== -1) {
+      } else if (characterIndexEmpty !== -1) {
         focusInputByIndex(characterIndexEmpty)
       }
 
