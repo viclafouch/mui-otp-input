@@ -102,11 +102,7 @@ const MuiOtpInput = React.forwardRef(
     }
 
     const selectInputByIndex = (inputIndex: number) => {
-      if (inputIndex === -1) {
-        valueSplitted[valueSplitted.length - 1]?.inputRef.current?.select()
-      } else {
-        valueSplitted[inputIndex]?.inputRef.current?.select()
-      }
+      valueSplitted[inputIndex]?.inputRef.current?.select()
     }
 
     const manageCaretForNextInput = (currentInputIndex: number) => {
@@ -121,12 +117,6 @@ const MuiOtpInput = React.forwardRef(
       }
     }
 
-    const manageCaretForPreviousInput = (currentInputIndex: number) => {
-      if (currentInputIndex > 0) {
-        selectInputByIndex(currentInputIndex - 1)
-      }
-    }
-
     const matchIsCharIsValid = (character: string, index: number) => {
       return typeof validateChar !== 'function'
         ? true
@@ -136,10 +126,12 @@ const MuiOtpInput = React.forwardRef(
     const handleOneInputChange = (
       event: React.ChangeEvent<HTMLInputElement>
     ) => {
-      let character = event.target.value[0] || ''
+      const initialChar = event.target.value[0] || ''
+      let character = initialChar
       const currentInputIndex = getIndexByInputElement(event.target)
 
-      if (!matchIsCharIsValid(character, currentInputIndex)) {
+      // handle backspace so check character
+      if (character && !matchIsCharIsValid(character, currentInputIndex)) {
         character = ''
       }
 
@@ -153,16 +145,12 @@ const MuiOtpInput = React.forwardRef(
         onComplete?.(finalValue)
       }
 
+      // Char is valid so go to next input
       if (character !== '') {
-        if (newValue.length < (length as number)) {
-          manageCaretForNextInput(newValue.length - 1)
-        } else {
-          manageCaretForNextInput(currentInputIndex)
-        }
-      } else if (newValue[currentInputIndex]) {
-        selectInputByIndex(currentInputIndex)
-      } else {
-        manageCaretForPreviousInput(currentInputIndex)
+        manageCaretForNextInput(currentInputIndex)
+        // Only for backspace so don't go to previous input if the char is invalid
+      } else if (initialChar === '') {
+        selectInputByIndex(currentInputIndex - 1)
       }
     }
 
@@ -195,7 +183,7 @@ const MuiOtpInput = React.forwardRef(
         selectInputByIndex(0)
       } else if (KEYBOARD_KEY.end === event.key) {
         event.preventDefault()
-        selectInputByIndex(-1)
+        selectInputByIndex(valueSplitted.length - 1)
       }
 
       onKeyDown?.(event)
