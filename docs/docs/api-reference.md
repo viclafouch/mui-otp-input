@@ -106,5 +106,17 @@ While not explicitly documented, the props of the MUI **[TextField](https://mui.
 See: https://mui.com/material-ui/api/text-field/
 
 ```jsx
-<MuiOtpInput TextFieldsProps={{ disabled: true, size: 'small', placeholder: '-' }} />
+<MuiOtpInput TextFieldsProps={{ disabled: true, size: 'small' }} />
+```
+
+## `placeholder`
+
+- Type: `string` | `undefined` | `(index: number) => string | undefined`
+- Default: `undefined`
+
+Unlike the normal type of a `TextField`, here you can manage a distinct placeholder for each field.
+
+```tsx
+<MuiOtpInput TextFieldsProps={{ placeholder: '-' }} />
+<MuiOtpInput TextFieldsProps={{ placeholder: (index) => `i-${index}` }} />
 ```
