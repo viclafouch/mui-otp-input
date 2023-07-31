@@ -107,18 +107,20 @@ const MuiOtpInput = React.forwardRef(
       }
     }
 
+    const matchIsCharIsValid = (character: string, index: number) => {
+      return typeof validateChar !== 'function'
+        ? true
+        : validateChar(character, index)
+    }
+
     const handleOneInputChange = (
       event: React.ChangeEvent<HTMLInputElement>
     ) => {
-      const character = event.target.value[0] || ''
+      let character = event.target.value[0] || ''
       const currentInputIndex = getIndexByInputElement(event.target)
 
-      if (
-        character &&
-        typeof validateChar === 'function' &&
-        !validateChar(character, currentInputIndex)
-      ) {
-        return
+      if (!matchIsCharIsValid(character, currentInputIndex)) {
+        character = ''
       }
 
       const newValue = replaceCharOfValue(currentInputIndex, character)
@@ -185,13 +187,17 @@ const MuiOtpInput = React.forwardRef(
       const content = event.clipboardData.getData('text/plain')
       const currentInputIndex = getIndexByInputElement(inputElement)
       const currentCharacter = getCharactersSplitted()
+
       const characters = mergeArrayStringFromIndex(
         currentCharacter,
         split(content),
         currentInputIndex
-      )
-      const characterIndexEmpty = characters.findIndex((character, index) => {
-        return index > currentInputIndex && character === ''
+      ).map((character, index) => {
+        return matchIsCharIsValid(character, index) ? character : ''
+      })
+
+      const characterIndexEmpty = characters.findIndex((character) => {
+        return character === ''
       })
 
       const newValue = joinArrayStrings(characters)
