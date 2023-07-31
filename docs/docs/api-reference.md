@@ -64,6 +64,18 @@ const handleComplete = (value) => {
 <MuiOtpInput length={4} onComplete={handleComplete} />
 ```
 
+## `onBlur`
+
+- Type: `((value: string, isCompleted: boolean) => void) | undefined`
+- Default: `undefined`
+
+
+Unlike the normal type of a `TextField['onBlur']` prop, here it only triggers when no input of the component is focused.
+
+```tsx
+<MuiOtpInput onBlur={() => console.log('no input of the component is focused')} />
+```
+
 
 ## `autoFocus`
 
