@@ -34,6 +34,7 @@ const MuiOtpInput = React.forwardRef(
       onComplete,
       validateChar = defaultValidateChar,
       className,
+      onBlur,
       ...restBoxProps
     } = props
     const initialValue = React.useRef(value)
@@ -52,6 +53,7 @@ const MuiOtpInput = React.forwardRef(
       onKeyDown,
       className: TextFieldClassName,
       placeholder,
+      onBlur: TextFieldOnBlur,
       ...restTextFieldsProps
     } = TextFieldsProps || {}
 
@@ -250,6 +252,18 @@ const MuiOtpInput = React.forwardRef(
       onPaste?.(event)
     }
 
+    const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+      TextFieldOnBlur?.(event)
+      const anInputIsFocused = valueSplitted.some(({ inputRef }) => {
+        return inputRef.current === event.relatedTarget
+      })
+
+      if (!anInputIsFocused) {
+        const { isCompleted, finalValue } = matchIsCompletedEvent(value)
+        onBlur?.(finalValue, isCompleted)
+      }
+    }
+
     return (
       <Box
         display="flex"
@@ -273,6 +287,7 @@ const MuiOtpInput = React.forwardRef(
               onFocus={handleOneInputFocus}
               onChange={handleOneInputChange}
               onKeyDown={handleOneInputKeyDown}
+              onBlur={handleBlur}
               // We use index as the order can't be moved
               // We can't use the value as it can be duplicated
               // eslint-disable-next-line react/no-array-index-key

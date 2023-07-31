@@ -12,7 +12,7 @@ type TextFieldProps = Omit<
   | 'placeholder'
 >
 
-type BoxProps = Omit<MuiBoxProps, 'onChange'>
+type BoxProps = Omit<MuiBoxProps, 'onChange' | 'onBlur'>
 
 export interface BaseMuiOtpInputProps {
   value?: string
@@ -26,6 +26,7 @@ export interface BaseMuiOtpInputProps {
   onComplete?: (value: string) => void
   validateChar?: (character: string, index: number) => boolean
   onChange?: (value: string) => void
+  onBlur?: (value: string, isCompleted: boolean) => void
 }
 
 export type MuiOtpInputProps = BoxProps & BaseMuiOtpInputProps
