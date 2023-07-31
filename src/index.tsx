@@ -9,7 +9,7 @@ import {
   updateIndex
 } from '@shared/helpers/array'
 import { split } from '@shared/helpers/string'
-import type { BaseMuiOtpInputProps, MuiOtpInputProps } from './index.types'
+import type { MuiOtpInputProps } from './index.types'
 
 export type { MuiOtpInputProps }
 
@@ -18,16 +18,20 @@ type ValueSplitted = {
   inputRef: React.RefObject<HTMLInputElement>
 }[]
 
+const defaultValidateChar = () => {
+  return true
+}
+
 const MuiOtpInput = React.forwardRef(
   (props: MuiOtpInputProps, propRef: MuiOtpInputProps['ref']) => {
     const {
-      value,
-      length,
-      autoFocus,
+      value = '',
+      length = 4,
+      autoFocus = false,
       onChange,
       TextFieldsProps,
       onComplete,
-      validateChar,
+      validateChar = defaultValidateChar,
       className,
       ...restBoxProps
     } = props
@@ -37,6 +41,7 @@ const MuiOtpInput = React.forwardRef(
       onFocus,
       onKeyDown,
       className: TextFieldClassName,
+      placeholder,
       ...restTextFieldsProps
     } = TextFieldsProps || {}
 
@@ -233,6 +238,11 @@ const MuiOtpInput = React.forwardRef(
               // We can't use the value as it can be duplicated
               // eslint-disable-next-line react/no-array-index-key
               key={index}
+              placeholder={
+                typeof placeholder === 'function'
+                  ? placeholder(index)
+                  : placeholder
+              }
               {...restTextFieldsProps}
             />
           )
@@ -241,17 +251,5 @@ const MuiOtpInput = React.forwardRef(
     )
   }
 )
-
-MuiOtpInput.defaultProps = {
-  value: '',
-  length: 4,
-  autoFocus: false,
-  validateChar: () => {
-    return true
-  },
-  onChange: () => {},
-  onComplete: () => {},
-  TextFieldsProps: {}
-} as Required<BaseMuiOtpInputProps>
 
 export { MuiOtpInput }

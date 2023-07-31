@@ -24,7 +24,13 @@ export const Primary: StoryFn<typeof MuiOtpInput> = () => {
         autoFocus
         sx={{ width: 300 }}
         gap={1}
-        TextFieldsProps={{ type: 'text', size: 'medium', placeholder: '-' }}
+        TextFieldsProps={{
+          type: 'text',
+          size: 'medium',
+          placeholder: (index) => {
+            return `${index}`
+          }
+        }}
         value={value}
         onChange={handleChange}
       />
