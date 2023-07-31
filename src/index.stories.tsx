@@ -11,7 +11,7 @@ export default {
 const theme = createTheme()
 
 export const Primary: StoryFn<typeof MuiOtpInput> = () => {
-  const [value, setValue] = React.useState<string>('123456')
+  const [value, setValue] = React.useState<string>('12345')
 
   const handleChange = (newValue: string) => {
     setValue(newValue)
@@ -24,7 +24,12 @@ export const Primary: StoryFn<typeof MuiOtpInput> = () => {
         autoFocus
         sx={{ width: 300 }}
         gap={1}
-        TextFieldsProps={{ type: 'text', size: 'medium', placeholder: '-' }}
+        TextFieldsProps={{
+          type: 'text',
+          size: 'medium',
+          placeholder: '12345',
+          hidePlaceholderOnInput: false
+        }}
         value={value}
         onChange={handleChange}
       />

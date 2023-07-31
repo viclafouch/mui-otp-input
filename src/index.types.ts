@@ -4,7 +4,7 @@ import type { TextFieldProps as MuiTextFieldProps } from '@mui/material/TextFiel
 type TextFieldProps = Omit<
   MuiTextFieldProps,
   'onChange' | 'select' | 'multiline' | 'defaultValue' | 'value' | 'autoFocus'
->
+> & { hidePlaceholderOnInput?: boolean }
 
 type BoxProps = Omit<MuiBoxProps, 'onChange'>
 

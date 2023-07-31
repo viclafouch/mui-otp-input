@@ -36,6 +36,8 @@ const MuiOtpInput = React.forwardRef(
       onPaste,
       onFocus,
       onKeyDown,
+      placeholder,
+      hidePlaceholderOnInput,
       className: TextFieldClassName,
       ...restTextFieldsProps
     } = TextFieldsProps || {}
@@ -208,6 +210,21 @@ const MuiOtpInput = React.forwardRef(
         {...restBoxProps}
       >
         {valueSplitted.map(({ character, inputRef }, index) => {
+          let placeholderDisplayValue
+          if (!value && placeholder) {
+            placeholderDisplayValue = placeholder
+          } else {
+            placeholderDisplayValue = hidePlaceholderOnInput ? '' : placeholder
+          }
+          if (placeholder && placeholder.length === length) {
+            if (!value && placeholder) {
+              placeholderDisplayValue = placeholder[index]
+            } else {
+              placeholderDisplayValue = hidePlaceholderOnInput
+                ? ''
+                : placeholder[index]
+            }
+          }
           return (
             <TextFieldBox
               autoFocus={autoFocus ? index === 0 : false}
@@ -221,6 +238,7 @@ const MuiOtpInput = React.forwardRef(
               onFocus={handleOneInputFocus}
               onChange={handleOneInputChange}
               onKeyDown={handleOneInputKeyDown}
+              placeholder={placeholderDisplayValue}
               // We use index as the order can't be moved
               // We can't use the value as it can be duplicated
               // eslint-disable-next-line react/no-array-index-key
