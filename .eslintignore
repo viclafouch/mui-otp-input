@@ -3,3 +3,4 @@ dist
 coverage
 docs/build
 .eslintrc.js
+docs/*.js

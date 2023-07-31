@@ -3,10 +3,9 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github')
-const darkCodeTheme = require('prism-react-renderer/themes/dracula')
+const github = require('prism-react-renderer/themes/github')
+const dracula = require('prism-react-renderer/themes/dracula')
 
-/** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'MUI OTP input',
   tagline: 'An OTP input designed for the React library MUI',
@@ -84,8 +83,8 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} by Victor de la Fouchardiere`
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme
+        theme: github,
+        darkTheme: dracula
       }
     })
 }
