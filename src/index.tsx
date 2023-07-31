@@ -68,6 +68,7 @@ const MuiOtpInput = React.forwardRef(
         charIndex,
         charValue
       )
+
       return joinArrayStrings(newValueSplitted)
     }
 
@@ -87,6 +88,7 @@ const MuiOtpInput = React.forwardRef(
       if (currentInputIndex + 1 === length) {
         return
       }
+
       if (valueSplitted[currentInputIndex + 1].character) {
         selectInputByIndex(currentInputIndex + 1)
       } else {
@@ -107,6 +109,7 @@ const MuiOtpInput = React.forwardRef(
       const currentInputIndex = getIndexByInputElement(event.target)
 
       if (
+        character &&
         typeof validateChar === 'function' &&
         !validateChar(character, currentInputIndex)
       ) {
@@ -145,6 +148,7 @@ const MuiOtpInput = React.forwardRef(
     ) => {
       const inputElement = event.target as HTMLInputElement
       const currentInputIndex = getIndexByInputElement(inputElement)
+
       if (inputElement.value === event.key) {
         event.preventDefault()
         manageCaretForNextInput(currentInputIndex)
@@ -164,6 +168,7 @@ const MuiOtpInput = React.forwardRef(
         event.preventDefault()
         selectInputByIndex(-1)
       }
+
       onKeyDown?.(event)
     }
 
@@ -186,15 +191,18 @@ const MuiOtpInput = React.forwardRef(
 
       const newValue = joinArrayStrings(characters)
       onChange?.(newValue)
+
       if (newValue.length === length) {
         onComplete?.(newValue)
         focusInputByIndex(length - 1)
+
         return
       }
 
       if (characterIndexEmpty !== -1) {
         focusInputByIndex(characterIndexEmpty)
       }
+
       onPaste?.(event)
     }
 

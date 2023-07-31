@@ -31,6 +31,7 @@ export function mergeArrayStringFromIndex(
   return array.reduce(
     (accumulator, currentValue, index) => {
       const { characters, restArrayMerged } = accumulator
+
       if (index < fromIndex) {
         return {
           restArrayMerged,
@@ -40,6 +41,7 @@ export function mergeArrayStringFromIndex(
 
       const [firstCharacter, ...restArrayWithoutFirstCharacter] =
         restArrayMerged
+
       return {
         restArrayMerged: restArrayWithoutFirstCharacter,
         characters: append(characters, firstCharacter || '')
