@@ -147,10 +147,18 @@ const MuiOtpInput = React.forwardRef(
 
       // Char is valid so go to next input
       if (character !== '') {
-        manageCaretForNextInput(currentInputIndex)
+        // handle when the filled input is before the input selected
+        if (newValue.length - 1 < currentInputIndex) {
+          selectInputByIndex(newValue.length)
+        } else {
+          manageCaretForNextInput(currentInputIndex)
+        }
+
         // Only for backspace so don't go to previous input if the char is invalid
       } else if (initialChar === '') {
-        selectInputByIndex(currentInputIndex - 1)
+        if (newValue.length <= currentInputIndex) {
+          selectInputByIndex(currentInputIndex - 1)
+        }
       }
     }
 
@@ -164,14 +172,30 @@ const MuiOtpInput = React.forwardRef(
       event: React.KeyboardEvent<HTMLInputElement>
     ) => {
       const inputElement = event.target as HTMLInputElement
+      const startPos = inputElement.selectionStart
+      const endPos = inputElement.selectionEnd
       const currentInputIndex = getIndexByInputElement(inputElement)
+      const isCaretBeforeChar = startPos === 0 && endPos === 0
 
       if (inputElement.value === event.key) {
         event.preventDefault()
         manageCaretForNextInput(currentInputIndex)
-      } else if (!inputElement.value && KEYBOARD_KEY.backspace === event.key) {
-        event.preventDefault()
-        selectInputByIndex(currentInputIndex - 1)
+      } else if (KEYBOARD_KEY.backspace === event.key) {
+        if (!inputElement.value) {
+          event.preventDefault()
+
+          selectInputByIndex(currentInputIndex - 1)
+          // Caret is before the character and there is a character, so remove it
+        } else if (isCaretBeforeChar) {
+          event.preventDefault()
+
+          const newValue = replaceCharOfValue(currentInputIndex, '')
+          onChange?.(newValue)
+
+          if (newValue.length <= currentInputIndex) {
+            selectInputByIndex(currentInputIndex - 1)
+          }
+        }
       } else if (KEYBOARD_KEY.left === event.key) {
         event.preventDefault()
         selectInputByIndex(currentInputIndex - 1)
@@ -193,9 +217,14 @@ const MuiOtpInput = React.forwardRef(
       event: React.ClipboardEvent<HTMLInputElement>
     ) => {
       event.preventDefault()
-      const inputElement = event.target as HTMLInputElement
       const content = event.clipboardData.getData('text/plain')
-      const currentInputIndex = getIndexByInputElement(inputElement)
+      const inputElement = event.target as HTMLInputElement
+      // Apply from where an input is empty or equal to the input selected
+      const currentInputIndex = valueSplitted.findIndex(
+        ({ character, inputRef }) => {
+          return character === '' || inputRef.current === inputElement
+        }
+      )
       const currentCharacter = getCharactersSplitted()
 
       const characters = mergeArrayStringFromIndex(
@@ -206,10 +235,6 @@ const MuiOtpInput = React.forwardRef(
         return matchIsCharIsValid(character, index) ? character : ''
       })
 
-      const characterIndexEmpty = characters.findIndex((character) => {
-        return character === ''
-      })
-
       const newValue = joinArrayStrings(characters)
       onChange?.(newValue)
 
@@ -217,9 +242,9 @@ const MuiOtpInput = React.forwardRef(
 
       if (isCompleted) {
         onComplete?.(finalValue)
-        focusInputByIndex(length - 1)
-      } else if (characterIndexEmpty !== -1) {
-        focusInputByIndex(characterIndexEmpty)
+        selectInputByIndex(length - 1)
+      } else {
+        selectInputByIndex(newValue.length)
       }
 
       onPaste?.(event)
