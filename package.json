@@ -11,14 +11,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/mui-one-time-password-input.umd.js",
-  "module": "./dist/mui-one-time-password-input.es.js",
+  "main": "./dist/mui-one-time-password-input.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/mui-one-time-password-input.es.js",
-      "require": "./dist/mui-one-time-password-input.umd.js"
+      "default": "./dist/mui-one-time-password-input.es.js"
     }
   },
   "repository": {

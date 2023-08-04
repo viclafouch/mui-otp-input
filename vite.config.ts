@@ -23,6 +23,7 @@ export default defineConfig({
     target: 'esnext',
     minify: true,
     lib: {
+      formats: ['es'],
       entry: path.resolve(__dirname, 'src/index.tsx'),
       name: 'mui-one-time-password-input',
       fileName: format => `mui-one-time-password-input.${format}.js`
@@ -44,8 +45,7 @@ export default defineConfig({
     peerDepsExternal(),
     react(),
     dts({
-      exclude: ['src/components/**/*'],
-      insertTypesEntry: true
+      rollupTypes: true
     })
   ]
 })
