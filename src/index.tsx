@@ -127,57 +127,58 @@ const MuiOtpInput = React.forwardRef(
         : validateChar(character, index)
     }
 
-    const handleOneInputChange = (index: number) => {
-      return (event: React.ChangeEvent<HTMLInputElement>) => {
-        // Autofill from sms
-        console.log(event.target)
+    const handleOneInputChange = (
+      event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+      const currentInputIndex = getIndexByInputElement(event.target)
 
-        if (index === 0 && event.target.value.length > 1) {
-          const { finalValue, isCompleted } = matchIsCompletedEvent(
-            event.target.value
-          )
-          onChange?.(finalValue)
-
-          if (isCompleted) {
-            onComplete?.(finalValue)
-          }
-
-          return
-        }
-
-        const initialChar = event.target.value[0] || ''
-        let character = initialChar
-        const currentInputIndex = getIndexByInputElement(event.target)
-
-        // handle backspace so check character
-        if (character && !matchIsCharIsValid(character, currentInputIndex)) {
-          character = ''
-        }
-
-        const newValue = replaceCharOfValue(currentInputIndex, character)
-
-        onChange?.(newValue)
-
-        const { isCompleted, finalValue } = matchIsCompletedEvent(newValue)
+      // Autofill from sms
+      if (currentInputIndex === 0 && event.target.value.length > 1) {
+        const { finalValue, isCompleted } = matchIsCompletedEvent(
+          event.target.value
+        )
+        onChange?.(finalValue)
 
         if (isCompleted) {
           onComplete?.(finalValue)
         }
 
-        // Char is valid so go to next input
-        if (character !== '') {
-          // handle when the filled input is before the input selected
-          if (newValue.length - 1 < currentInputIndex) {
-            selectInputByIndex(newValue.length)
-          } else {
-            manageCaretForNextInput(currentInputIndex)
-          }
+        selectInputByIndex(finalValue.length - 1)
 
-          // Only for backspace so don't go to previous input if the char is invalid
-        } else if (initialChar === '') {
-          if (newValue.length <= currentInputIndex) {
-            selectInputByIndex(currentInputIndex - 1)
-          }
+        return
+      }
+
+      const initialChar = event.target.value[0] || ''
+      let character = initialChar
+
+      // handle backspace so check character
+      if (character && !matchIsCharIsValid(character, currentInputIndex)) {
+        character = ''
+      }
+
+      const newValue = replaceCharOfValue(currentInputIndex, character)
+
+      onChange?.(newValue)
+
+      const { isCompleted, finalValue } = matchIsCompletedEvent(newValue)
+
+      if (isCompleted) {
+        onComplete?.(finalValue)
+      }
+
+      // Char is valid so go to next input
+      if (character !== '') {
+        // handle when the filled input is before the input selected
+        if (newValue.length - 1 < currentInputIndex) {
+          selectInputByIndex(newValue.length)
+        } else {
+          manageCaretForNextInput(currentInputIndex)
+        }
+
+        // Only for backspace so don't go to previous input if the char is invalid
+      } else if (initialChar === '') {
+        if (newValue.length <= currentInputIndex) {
+          selectInputByIndex(currentInputIndex - 1)
         }
       }
     }
@@ -303,7 +304,7 @@ const MuiOtpInput = React.forwardRef(
               } ${TextFieldClassName || ''}`}
               onPaste={handleOneInputPaste}
               onFocus={handleOneInputFocus}
-              onChange={handleOneInputChange(index)}
+              onChange={handleOneInputChange}
               onKeyDown={handleOneInputKeyDown}
               onBlur={handleBlur}
               // We use index as the order can't be moved
