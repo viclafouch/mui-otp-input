@@ -128,7 +128,7 @@ const MuiOtpInput = React.forwardRef(
     const handleOneInputChange = (
       event: React.ChangeEvent<HTMLInputElement>
     ) => {
-      const initialChar = event.target.value[0] || ''
+      const initialChar = event.target.value || ''
       let character = initialChar
       const currentInputIndex = getIndexByInputElement(event.target)
 
@@ -152,6 +152,8 @@ const MuiOtpInput = React.forwardRef(
         // handle when the filled input is before the input selected
         if (newValue.length - 1 < currentInputIndex) {
           selectInputByIndex(newValue.length)
+        } else if (newValue.length === length) {
+          selectInputByIndex(length - 1)
         } else {
           manageCaretForNextInput(currentInputIndex)
         }
