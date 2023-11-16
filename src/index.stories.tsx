@@ -35,6 +35,15 @@ export const Primary: StoryFn<typeof MuiOtpInput> = () => {
           size: 'medium',
           placeholder: (index) => {
             return `${index}`
+          },
+          'aria-label': (index) => {
+            return `${index}`
+          },
+          'aria-labelledby': (index) => {
+            return `label-id-${index}`
+          },
+          'aria-describedby': (index) => {
+            return `description-id-${index}`
           }
         }}
         value={value}

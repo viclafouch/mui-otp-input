@@ -44,4 +44,96 @@ describe('components/MuiOtpInput', () => {
     render(<MuiOtpInput value="abcd" autoFocus />)
     expect(testUtils.getInputElementByIndex(0)).toHaveFocus()
   })
+
+  test('should pass aria-label, aria-labelledby and aria-describedby to inputs when passing it via TextFieldsProps', () => {
+    render(
+      <MuiOtpInput
+        value="abcd"
+        TextFieldsProps={{
+          'aria-label': 'this is aria label',
+          'aria-labelledby': 'this is aria labelledby',
+          'aria-describedby': 'this is aria describedby'
+        }}
+      />
+    )
+    expect(testUtils.getInputElementByIndex(0)).toHaveAttribute(
+      'aria-label',
+      'this is aria label'
+    )
+    expect(testUtils.getInputElementByIndex(0)).toHaveAttribute(
+      'aria-labelledby',
+      'this is aria labelledby'
+    )
+    expect(testUtils.getInputElementByIndex(0)).toHaveAttribute(
+      'aria-describedby',
+      'this is aria describedby'
+    )
+  })
+
+  test('should pass aria-label, aria-labelledby and aria-describedby to inputs when passing a function with an index via TextFieldsProps', () => {
+    render(
+      <MuiOtpInput
+        value="abcd"
+        TextFieldsProps={{
+          'aria-label': (index) => {
+            return `this is aria label ${index + 1}`
+          },
+          'aria-labelledby': (index) => {
+            return `this is aria labelledby ${index + 1}`
+          },
+          'aria-describedby': (index) => {
+            return `this is aria describedby ${index + 1}`
+          }
+        }}
+      />
+    )
+    expect(testUtils.getInputElementByIndex(0)).toHaveAttribute(
+      'aria-label',
+      'this is aria label 1'
+    )
+    expect(testUtils.getInputElementByIndex(0)).toHaveAttribute(
+      'aria-labelledby',
+      'this is aria labelledby 1'
+    )
+    expect(testUtils.getInputElementByIndex(0)).toHaveAttribute(
+      'aria-describedby',
+      'this is aria describedby 1'
+    )
+    expect(testUtils.getInputElementByIndex(1)).toHaveAttribute(
+      'aria-label',
+      'this is aria label 2'
+    )
+    expect(testUtils.getInputElementByIndex(1)).toHaveAttribute(
+      'aria-labelledby',
+      'this is aria labelledby 2'
+    )
+    expect(testUtils.getInputElementByIndex(1)).toHaveAttribute(
+      'aria-describedby',
+      'this is aria describedby 2'
+    )
+    expect(testUtils.getInputElementByIndex(2)).toHaveAttribute(
+      'aria-label',
+      'this is aria label 3'
+    )
+    expect(testUtils.getInputElementByIndex(2)).toHaveAttribute(
+      'aria-labelledby',
+      'this is aria labelledby 3'
+    )
+    expect(testUtils.getInputElementByIndex(2)).toHaveAttribute(
+      'aria-describedby',
+      'this is aria describedby 3'
+    )
+    expect(testUtils.getInputElementByIndex(3)).toHaveAttribute(
+      'aria-label',
+      'this is aria label 4'
+    )
+    expect(testUtils.getInputElementByIndex(3)).toHaveAttribute(
+      'aria-labelledby',
+      'this is aria labelledby 4'
+    )
+    expect(testUtils.getInputElementByIndex(3)).toHaveAttribute(
+      'aria-describedby',
+      'this is aria describedby 4'
+    )
+  })
 })
