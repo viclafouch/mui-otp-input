@@ -1,6 +1,5 @@
 import React from 'react'
 import TextFieldBox from '@components/TextFieldBox/TextFieldBox'
-import Box from '@mui/material/Box'
 import { KEYBOARD_KEY } from '@shared/constants/event'
 import {
   getFilledArray,
@@ -10,6 +9,7 @@ import {
 } from '@shared/helpers/array'
 import { split } from '@shared/helpers/string'
 import { useEvent } from '@shared/hooks/useEvent'
+import Box from '@mui/material/Box'
 import type { MuiOtpInputProps } from './index.types'
 
 export type { MuiOtpInputProps }
@@ -55,7 +55,11 @@ const MuiOtpInput = React.forwardRef(
       onKeyDown,
       className: TextFieldClassName,
       placeholder,
+      'aria-label': ariaLabelTextProps,
+      'aria-labelledby': ariaLabelledByTextProps,
+      'aria-describedby': ariaDescribedByTextProps,
       onBlur: TextFieldOnBlur,
+      inputProps,
       ...restTextFieldsProps
     } = TextFieldsProps || {}
 
@@ -316,6 +320,21 @@ const MuiOtpInput = React.forwardRef(
                   ? placeholder(index)
                   : placeholder
               }
+              inputProps={{
+                ...inputProps,
+                'aria-label':
+                  typeof ariaLabelTextProps === 'function'
+                    ? ariaLabelTextProps(index)
+                    : ariaLabelTextProps,
+                'aria-describedby':
+                  typeof ariaDescribedByTextProps === 'function'
+                    ? ariaDescribedByTextProps(index)
+                    : ariaDescribedByTextProps,
+                'aria-labelledby':
+                  typeof ariaLabelledByTextProps === 'function'
+                    ? ariaLabelledByTextProps(index)
+                    : ariaLabelledByTextProps
+              }}
               {...restTextFieldsProps}
             />
           )
