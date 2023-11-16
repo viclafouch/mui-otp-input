@@ -111,6 +111,7 @@ const validateChar = (value, index) => {
 <MuiOtpInput length={4} validateChar={validateChar} />
 ```
 
+
 # TextFieldsProps
 
 While not explicitly documented, the props of the MUI **[TextField](https://mui.com/api/text-field)** component can be used for each `TextField`.
@@ -131,4 +132,40 @@ Unlike the normal type of a `TextField`, here you can manage a distinct placehol
 ```tsx
 <MuiOtpInput TextFieldsProps={{ placeholder: '-' }} />
 <MuiOtpInput TextFieldsProps={{ placeholder: (index) => `i-${index}` }} />
+```
+
+## `aria-label`
+
+- Type: `string` | `undefined` | `(index: number) => string | undefined`
+- Default: `undefined`
+
+Unlike the normal type of a `TextField`, here you can manage a distinct aria-label for each input field to improve accessibility.
+
+```tsx
+<MuiOtpInput TextFieldsProps={{ 'aria-label': 'Type a digit' }} />
+<MuiOtpInput TextFieldsProps={{ 'aria-label': (index) => `Please type digit number - ${index + 1}` }} />
+```
+
+## `aria-describedby`
+
+- Type: `string` | `undefined` | `(index: number) => string | undefined`
+- Default: `undefined`
+
+Unlike the normal type of a `TextField`, here you can manage a distinct aria-describedby for each input field to improve accessibility.
+
+```tsx
+<MuiOtpInput TextFieldsProps={{ 'aria-describedby': 'description-id' }} />
+<MuiOtpInput TextFieldsProps={{ 'aria-describedby': (index) => `id-${index + 1}` }} />
+```
+
+## `aria-labelledby`
+
+- Type: `string` | `undefined` | `(index: number) => string | undefined`
+- Default: `undefined`
+
+Unlike the normal type of a `TextField`, here you can manage a distinct aria-labelledby for each input field to improve accessibility.
+
+```tsx
+<MuiOtpInput TextFieldsProps={{ 'aria-labelledby': 'label-id' }} />
+<MuiOtpInput TextFieldsProps={{ 'aria-labelledby': (index) => `id-${index + 1}` }} />
 ```
