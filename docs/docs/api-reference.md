@@ -121,6 +121,16 @@ See: https://mui.com/material-ui/api/text-field/
 <MuiOtpInput TextFieldsProps={{ disabled: true, size: 'small' }} />
 ```
 
+# FirstTextFieldProps
+
+The props of the MUI **[TextField](https://mui.com/api/text-field)** component that are applied only for the first `TextField`.
+
+See: https://mui.com/material-ui/api/text-field/
+
+```jsx
+<MuiOtpInput FirstTextFieldProps={{ inputRef: fieldRef }} />
+```
+
 ## `placeholder`
 
 - Type: `string` | `undefined` | `(index: number) => string | undefined`

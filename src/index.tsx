@@ -31,6 +31,7 @@ const MuiOtpInput = React.forwardRef(
       autoFocus = false,
       onChange,
       TextFieldsProps,
+      FirstTextFieldProps,
       onComplete,
       validateChar = defaultValidateChar,
       className,
@@ -317,6 +318,7 @@ const MuiOtpInput = React.forwardRef(
                   : placeholder
               }
               {...restTextFieldsProps}
+              {...(index === 0 ? FirstTextFieldProps : {})}
             />
           )
         })}

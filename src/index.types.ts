@@ -23,6 +23,7 @@ export interface BaseMuiOtpInputProps {
       | MuiTextFieldProps['placeholder']
       | ((index: number) => MuiTextFieldProps['placeholder'])
   }
+  FirstTextFieldProps?: TextFieldProps
   onComplete?: (value: string) => void
   validateChar?: (character: string, index: number) => boolean
   onChange?: (value: string) => void
