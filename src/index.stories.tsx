@@ -30,11 +30,11 @@ export const Primary: StoryFn<typeof MuiOtpInput> = () => {
         sx={{ width: 300 }}
         gap={1}
         onComplete={handleComplete}
-        TextFieldsProps={{
-          type: 'text',
-          size: 'medium',
-          placeholder: (index) => {
-            return `${index}`
+        TextFieldsProps={(index: number) => {
+          return {
+            type: 'text',
+            size: 'medium',
+            placeholder: String(index)
           }
         }}
         value={value}

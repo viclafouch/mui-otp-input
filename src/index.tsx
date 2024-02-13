@@ -49,16 +49,6 @@ const MuiOtpInput = React.forwardRef(
       }
     })
 
-    const {
-      onPaste,
-      onFocus,
-      onKeyDown,
-      className: TextFieldClassName,
-      placeholder,
-      onBlur: TextFieldOnBlur,
-      ...restTextFieldsProps
-    } = TextFieldsProps || {}
-
     React.useEffect(() => {
       const { isCompleted, finalValue } = matchIsCompletedEvent(
         initialValue.current
@@ -183,14 +173,8 @@ const MuiOtpInput = React.forwardRef(
       }
     }
 
-    const handleOneInputFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-      event.preventDefault()
-      event.target.select()
-      onFocus?.(event)
-    }
-
     const handleOneInputKeyDown = (
-      event: React.KeyboardEvent<HTMLInputElement>
+      event: React.KeyboardEvent<HTMLDivElement>
     ) => {
       const inputElement = event.target as HTMLInputElement
       const startPos = inputElement.selectionStart
@@ -230,14 +214,11 @@ const MuiOtpInput = React.forwardRef(
         event.preventDefault()
         selectInputByIndex(valueSplitted.length - 1)
       }
-
-      onKeyDown?.(event)
     }
 
     const handleOneInputPaste = (
-      event: React.ClipboardEvent<HTMLInputElement>
+      event: React.ClipboardEvent<HTMLDivElement>
     ) => {
-      event.preventDefault()
       const content = event.clipboardData.getData('text/plain')
       const inputElement = event.target as HTMLInputElement
       // Apply from where an input is empty or equal to the input selected
@@ -267,12 +248,11 @@ const MuiOtpInput = React.forwardRef(
       } else {
         selectInputByIndex(newValue.length)
       }
-
-      onPaste?.(event)
     }
 
-    const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-      TextFieldOnBlur?.(event)
+    const handleBlur = (
+      event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>
+    ) => {
       const anInputIsFocused = valueSplitted.some(({ inputRef }) => {
         return inputRef.current === event.relatedTarget
       })
@@ -293,6 +273,17 @@ const MuiOtpInput = React.forwardRef(
         {...restBoxProps}
       >
         {valueSplitted.map(({ character, inputRef }, index) => {
+          const {
+            onPaste,
+            onFocus,
+            onKeyDown,
+            className: TextFieldClassName,
+            onBlur: TextFieldOnBlur,
+            ...restTextFieldsProps
+          } = typeof TextFieldsProps === 'function'
+            ? TextFieldsProps(index) || {}
+            : TextFieldsProps || {}
+
           return (
             <TextFieldBox
               autoFocus={autoFocus ? index === 0 : false}
@@ -302,20 +293,29 @@ const MuiOtpInput = React.forwardRef(
               className={`MuiOtpInput-TextField MuiOtpInput-TextField-${
                 index + 1
               } ${TextFieldClassName || ''}`}
-              onPaste={handleOneInputPaste}
-              onFocus={handleOneInputFocus}
+              onPaste={(event) => {
+                event.preventDefault()
+                handleOneInputPaste(event)
+                onPaste?.(event)
+              }}
+              onFocus={(event) => {
+                event.preventDefault()
+                event.target.select()
+                onFocus?.(event)
+              }}
               onChange={handleOneInputChange}
-              onKeyDown={handleOneInputKeyDown}
-              onBlur={handleBlur}
+              onKeyDown={(event) => {
+                handleOneInputKeyDown(event)
+                onKeyDown?.(event)
+              }}
+              onBlur={(event) => {
+                TextFieldOnBlur?.(event)
+                handleBlur(event)
+              }}
               // We use index as the order can't be moved
               // We can't use the value as it can be duplicated
               // eslint-disable-next-line react/no-array-index-key
               key={index}
-              placeholder={
-                typeof placeholder === 'function'
-                  ? placeholder(index)
-                  : placeholder
-              }
               {...restTextFieldsProps}
             />
           )
