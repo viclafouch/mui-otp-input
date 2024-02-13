@@ -121,6 +121,12 @@ See: https://mui.com/material-ui/api/text-field/
 <MuiOtpInput TextFieldsProps={{ disabled: true, size: 'small' }} />
 ```
 
+OR if you want to pass different props depending of the index.
+
+```jsx
+<MuiColorInput TextFieldsProps={(index) => ({ size: 'small', placeholder: String(index) })}  />
+```
+
 ## `placeholder`
 
 - Type: `string` | `undefined` | `(index: number) => string | undefined`
