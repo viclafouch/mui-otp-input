@@ -51,6 +51,7 @@ const nextConfig = {
 
 module.exports = nextConfig
 ```
+
 ## Congratulations !
 
 That's all, now let's deep dive into the [props](/docs/api-reference).
