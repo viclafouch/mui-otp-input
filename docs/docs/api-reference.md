@@ -124,7 +124,7 @@ See: https://mui.com/material-ui/api/text-field/
 OR if you want to pass different props depending of the index.
 
 ```jsx
-<MuiColorInput TextFieldsProps={(index) => ({ size: 'small', placeholder: String(index) })}  />
+<MuiOtpInput TextFieldsProps={(index) => ({ size: 'small', placeholder: String(index) })}  />
 ```
 
 ## `placeholder`
