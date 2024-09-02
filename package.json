@@ -55,9 +55,9 @@
     }
   },
   "peerDependencies": {
-    "@emotion/react": "^11.5.0",
-    "@emotion/styled": "^11.3.0",
-    "@mui/material": "^5.0.0",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.0.0",
     "@types/react": "^18.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
@@ -68,9 +68,9 @@
     }
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@mui/material": "^5.16.0",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.0.1",
     "@types/react": "^18.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
