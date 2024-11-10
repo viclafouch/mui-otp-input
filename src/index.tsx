@@ -7,6 +7,7 @@ import {
   mergeArrayStringFromIndex,
   updateIndex
 } from '@shared/helpers/array'
+import { mergeRefs } from '@shared/helpers/react'
 import { split } from '@shared/helpers/string'
 import { useEvent } from '@shared/hooks/useEvent'
 import Box from '@mui/material/Box'
@@ -279,6 +280,7 @@ const MuiOtpInput = React.forwardRef(
             onKeyDown,
             className: TextFieldClassName,
             onBlur: TextFieldOnBlur,
+            inputRef: TextFieldInputRef,
             ...restTextFieldsProps
           } = typeof TextFieldsProps === 'function'
             ? TextFieldsProps(index) || {}
@@ -289,7 +291,7 @@ const MuiOtpInput = React.forwardRef(
               autoFocus={autoFocus ? index === 0 : false}
               autoComplete="one-time-code"
               value={character}
-              inputRef={inputRef}
+              inputRef={mergeRefs([inputRef, TextFieldInputRef])}
               className={`MuiOtpInput-TextField MuiOtpInput-TextField-${
                 index + 1
               } ${TextFieldClassName || ''}`}
