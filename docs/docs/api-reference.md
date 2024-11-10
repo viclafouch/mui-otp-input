@@ -111,7 +111,7 @@ const validateChar = (value, index) => {
 <MuiOtpInput length={4} validateChar={validateChar} />
 ```
 
-# TextFieldsProps
+## `TextFieldsProps`
 
 While not explicitly documented, the props of the MUI **[TextField](https://mui.com/api/text-field)** component can be used for each `TextField`.
 
