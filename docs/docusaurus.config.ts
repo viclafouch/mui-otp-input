@@ -13,8 +13,10 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'viclafouch', // Usually your GitHub org/user name.
-  projectName: 'mui-otp-input', // Usually your repo name.
+  // Usually your GitHub org/user name.
+  organizationName: 'viclafouch',
+  // Usually your repo name.
+  projectName: 'mui-otp-input',
   deploymentBranch: 'gh-pages',
   trailingSlash: true,
 

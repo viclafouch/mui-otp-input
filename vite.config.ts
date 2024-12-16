@@ -1,9 +1,9 @@
-import { defineConfig } from 'vitest/config'
-import react from '@vitejs/plugin-react'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import dts from 'vite-plugin-dts'
+import { defineConfig } from 'vitest/config'
+import react from '@vitejs/plugin-react'
 
-
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const path = require('path')
 
 // https://vitejs.dev/config/
@@ -12,12 +12,12 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true
   },
-  resolve:{
-    alias:{
-      '@assets' : path.resolve(__dirname, './src/assets'),
-      '@shared' : path.resolve(__dirname, './src/shared'),
-      '@components' : path.resolve(__dirname, './src/components'),
-    },
+  resolve: {
+    alias: {
+      '@assets': path.resolve(__dirname, './src/assets'),
+      '@shared': path.resolve(__dirname, './src/shared'),
+      '@components': path.resolve(__dirname, './src/components')
+    }
   },
   build: {
     target: 'esnext',
@@ -26,7 +26,7 @@ export default defineConfig({
       formats: ['es'],
       entry: path.resolve(__dirname, 'src/index.tsx'),
       name: 'mui-one-time-password-input',
-      fileName: format => `mui-one-time-password-input.${format}.js`
+      fileName: (format) => `mui-one-time-password-input.${format}.js`
     },
     rollupOptions: {
       output: {
@@ -36,7 +36,7 @@ export default defineConfig({
           'react/jsx-runtime': 'jsxRuntime',
           '@mui/material/Box': 'Box',
           '@mui/material/TextField': 'TextField',
-          '@mui/material/styles': 'styles',
+          '@mui/material/styles': 'styles'
         }
       }
     }

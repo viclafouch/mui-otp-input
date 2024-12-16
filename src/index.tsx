@@ -288,6 +288,7 @@ const MuiOtpInput = React.forwardRef(
 
           return (
             <TextFieldBox
+              // eslint-disable-next-line jsx-a11y/no-autofocus
               autoFocus={autoFocus ? index === 0 : false}
               autoComplete="one-time-code"
               value={character}

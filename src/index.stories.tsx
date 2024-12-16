@@ -26,6 +26,7 @@ export const Primary: StoryFn<typeof MuiOtpInput> = () => {
     <ThemeProvider theme={theme}>
       <MuiOtpInput
         length={5}
+        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus
         sx={{ width: 300 }}
         gap={1}
