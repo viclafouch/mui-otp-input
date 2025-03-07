@@ -26,7 +26,9 @@ export default defineConfig({
       formats: ['es'],
       entry: path.resolve(__dirname, 'src/index.tsx'),
       name: 'mui-one-time-password-input',
-      fileName: (format) => `mui-one-time-password-input.${format}.js`
+      fileName: (format) => {
+        return `mui-one-time-password-input.${format}.js`
+      }
     },
     rollupOptions: {
       output: {
