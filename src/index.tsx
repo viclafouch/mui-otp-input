@@ -17,7 +17,7 @@ export type { MuiOtpInputProps }
 
 type ValueSplitted = {
   character: string
-  inputRef: React.RefObject<HTMLInputElement>
+  inputRef: React.RefObject<HTMLInputElement | null>
 }[]
 
 const defaultValidateChar = () => {

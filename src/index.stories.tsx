@@ -1,7 +1,7 @@
 import React from 'react'
 import { createTheme, ThemeProvider } from '@mui/material'
 import { action } from '@storybook/addon-actions'
-import { Meta, StoryFn } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 import { MuiOtpInput } from './index'
 
 export default {
