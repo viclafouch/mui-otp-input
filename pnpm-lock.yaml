@@ -112,8 +112,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       mui-one-time-password-input:
-        specifier: ^4.0.1
-        version: 4.0.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@types/react@19.2.14)(react@19.0.0))(@mui/material@7.3.9(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@types/react@19.2.14)(react@19.0.0))(@types/react@19.2.14)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@types/react@19.2.14)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^6.0.0
+        version: 6.0.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@types/react@19.2.14)(react@19.0.0))(@mui/material@7.3.9(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@types/react@19.2.14)(react@19.0.0))(@types/react@19.2.14)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@types/react@19.2.14)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       prism-react-renderer:
         specifier: ^2.4.1
         version: 2.4.1(react@19.0.0)
@@ -5834,12 +5834,12 @@ packages:
   muggle-string@0.4.1:
     resolution: {integrity: sha512-VNTrAak/KhO2i8dqqnqnAHOa3cYBwXEZe9h+D5h/1ZqFSTEFHdM65lR7RoIqq3tBBYavsOXV84NoHXZ0AkPyqQ==}
 
-  mui-one-time-password-input@4.0.1:
-    resolution: {integrity: sha512-lfPpyssFLjR6MIKnHSPfFZYaz/ffqjuJEYKcVnIAayE8xlW8uD7cMMa7vvOCv1OcptY1CIXrlIKTxelDVTviaA==}
+  mui-one-time-password-input@6.0.0:
+    resolution: {integrity: sha512-xBtTz1MwsUcl4zszvym2XrPWQJpeG0DZb6gv/PrcwEZOrKl5C9meSOoVj93Xcb1DRtjHX3d/RSwDAldq8AgH1g==}
     peerDependencies:
       '@emotion/react': ^11.13.0
       '@emotion/styled': ^11.13.0
-      '@mui/material': ^6.0.0
+      '@mui/material': ^7.0.0
       '@types/react': ^18.0.0 || ^19.0.0
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
@@ -15592,7 +15592,7 @@ snapshots:
 
   muggle-string@0.4.1: {}
 
-  mui-one-time-password-input@4.0.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@types/react@19.2.14)(react@19.0.0))(@mui/material@7.3.9(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@types/react@19.2.14)(react@19.0.0))(@types/react@19.2.14)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@types/react@19.2.14)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  mui-one-time-password-input@6.0.0(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@types/react@19.2.14)(react@19.0.0))(@mui/material@7.3.9(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@types/react@19.2.14)(react@19.0.0))(@types/react@19.2.14)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@types/react@19.2.14)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@emotion/react': 11.14.0(@types/react@19.2.14)(react@19.0.0)
       '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.2.14)(react@19.0.0))(@types/react@19.2.14)(react@19.0.0)
