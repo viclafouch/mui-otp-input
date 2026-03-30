@@ -10,19 +10,19 @@ Like any component, if you want to override a component's styles using custom cl
 <MuiOtpInput className="my-class-name" />
 ```
 
-Then, you can use the differents global class names (see below) to target an element of `MuiOtpInput`.
+Then, you can use the different global class names (see below) to target an element of `MuiOtpInput`.
 
 | 	Global class                            | Description                                                                                                                   |
 | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | `.MuiOtpInput-Box`                        | 	Styles applied to the root element.                                                                                                                   |
 | `.MuiOtpInput-TextField`                        | 	Styles applied to each [TextField](https://mui.com/material-ui/api/text-field/) component.                                                                                                                   |
 | `.MuiOtpInput-TextField-{n}`                        | 	Styles applied to a specific [TextField](https://mui.com/material-ui/api/text-field/) component. ``.MuiOtpInput-TextField-3` to target the third TextField for example.                                                                                                                    |
-For example: target the `.MuiTelInput-TextField` global class name to customize all TextFields.
+For example: target the `.MuiOtpInput-TextField` global class name to customize all TextFields.
 
 ## Example with styled-component / emotion
 
 ```jsx
-import { styled } from 'styled-component' // or emotion
+import { styled } from 'styled-components' // or emotion
 import { MuiOtpInput } from 'mui-one-time-password-input'
 
 const MuiOtpInputStyled = styled(MuiOtpInput)`

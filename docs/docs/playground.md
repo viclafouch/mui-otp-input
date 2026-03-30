@@ -1,3 +1,7 @@
+---
+sidebar_position: 6
+---
+
 # Playground
 
 Need to play around with **MuiOtpInput** in a live environment before deciding if it's the right fit? No problem.

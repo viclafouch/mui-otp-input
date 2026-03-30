@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 # API Reference
@@ -113,9 +113,7 @@ const validateChar = (value, index) => {
 
 ## `TextFieldsProps`
 
-While not explicitly documented, the props of the MUI **[TextField](https://mui.com/api/text-field)** component can be used for each `TextField`.
-
-See: https://mui.com/material-ui/api/text-field/
+While not explicitly documented, the props of the MUI **[TextField](https://mui.com/material-ui/api/text-field/)** component can be used for each `TextField`.
 
 ```jsx
 <MuiOtpInput TextFieldsProps={{ disabled: true, size: 'small' }} />

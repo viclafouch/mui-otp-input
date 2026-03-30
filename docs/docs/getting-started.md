@@ -12,8 +12,22 @@ or you can use **yarn**
 ```bash
 yarn add mui-one-time-password-input
 ```
+or you can use **pnpm**
+```bash
+pnpm add mui-one-time-password-input
+```
 
-We have completed installing the package.
+## Peer Dependencies
+
+MUI OTP Input requires the following peer dependencies:
+
+- `@emotion/react` >= 11.13.0
+- `@emotion/styled` >= 11.13.0
+- `@mui/material` >= 7.0.0
+- `react` >= 18.0.0
+- `react-dom` >= 18.0.0
+
+These are typically already installed if you're using Material UI in your project.
 
 ## Simple usage
 
@@ -40,18 +54,19 @@ const MyComponent = () => {
 
 Learn how to use MUI OTP Input with [Next.js](https://nextjs.org/).
 
-Once you have installed `MUI OTP Input` in your next.js project, it is important to transpile it as it is an ESM package first.
+Once you have installed `MUI OTP Input` in your Next.js project, it is important to transpile it as it is an ESM package first.
 
 ```js
+// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
- transpilePackages: ['mui-one-time-password-input'],
- // your config
+  transpilePackages: ['mui-one-time-password-input'],
+  // your config
 }
 
-module.exports = nextConfig
+export default nextConfig
 ```
 
-## Congratulations !
+## Congratulations!
 
 That's all, now let's deep dive into the [props](/docs/api-reference).

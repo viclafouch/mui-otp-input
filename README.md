@@ -23,6 +23,9 @@ npm install mui-one-time-password-input
 
 // with yarn
 yarn add mui-one-time-password-input
+
+// with pnpm
+pnpm add mui-one-time-password-input
 ```
 
 ## Usage
@@ -51,13 +54,14 @@ Learn how to use MUI OTP Input with [Next.js](https://nextjs.org/).
 Once you have installed `MUI OTP Input` in your next.js project, it is important to transpile it as it is an ESM package first.
 
 ```js
+// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
- transpilePackages: ['mui-one-time-password-input'],
- // your config
+  transpilePackages: ['mui-one-time-password-input'],
+  // your config
 }
 
-module.exports = nextConfig
+export default nextConfig
 ```
 
 ## [Documentation](https://viclafouch.github.io/mui-otp-input/)
