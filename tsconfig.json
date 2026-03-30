@@ -4,8 +4,8 @@
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
-    "skipLibCheck": false,
-    "esModuleInterop": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -16,11 +16,11 @@
     "noEmit": true,
     "types": ["vitest/globals"],
     "jsx": "react-jsx",
-    "baseUrl": "./src",
+    "verbatimModuleSyntax": true,
     "paths": {
-      "@assets/*": ["assets/*"],
-      "@shared/*": ["shared/*"],
-      "@components/*": ["components/*"]
+      "@assets/*": ["./src/assets/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@components/*": ["./src/components/*"]
     }
   },
   "include": ["src/**/*", ".storybook/**/*"],

@@ -1,22 +1,26 @@
-import peerDepsExternal from 'rollup-plugin-peer-deps-external'
+import { resolve } from 'node:path'
 import dts from 'vite-plugin-dts'
-import { defineConfig } from 'vitest/config'
+import { configDefaults, defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
+import pkg from './package.json' with { type: 'json' }
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const path = require('node:path')
+const external = [
+  ...Object.keys(pkg.peerDependencies ?? {}),
+  'react/jsx-runtime',
+  /^@mui\/material\//
+]
 
-// https://vitejs.dev/config/
 export default defineConfig({
   test: {
     environment: 'jsdom',
-    globals: true
+    globals: true,
+    exclude: [...configDefaults.exclude, '**/dist/**']
   },
   resolve: {
     alias: {
-      '@assets': path.resolve(__dirname, './src/assets'),
-      '@shared': path.resolve(__dirname, './src/shared'),
-      '@components': path.resolve(__dirname, './src/components')
+      '@assets': resolve(import.meta.dirname, './src/assets'),
+      '@shared': resolve(import.meta.dirname, './src/shared'),
+      '@components': resolve(import.meta.dirname, './src/components')
     }
   },
   build: {
@@ -24,28 +28,21 @@ export default defineConfig({
     minify: true,
     lib: {
       formats: ['es'],
-      entry: path.resolve(__dirname, 'src/index.tsx'),
+      entry: resolve(import.meta.dirname, 'src/index.tsx'),
       name: 'mui-one-time-password-input',
       fileName: (format) => {
         return `mui-one-time-password-input.${format}.js`
       }
     },
-    rollupOptions: {
+    rolldownOptions: {
       output: {
-        sourcemapExcludeSources: true,
-        globals: {
-          react: 'React',
-          'react/jsx-runtime': 'jsxRuntime',
-          '@mui/material/Box': 'Box',
-          '@mui/material/TextField': 'TextField',
-          '@mui/material/styles': 'styles'
-        }
-      }
+        sourcemapExcludeSources: true
+      },
+      external
     }
   },
   plugins: [
-    peerDepsExternal(),
     react(),
-    dts({ rollupTypes: true, exclude: ['/**/*.stories.tsx', '/**/*.test.tsx'] })
+    dts({ exclude: ['/**/*.stories.tsx', '/**/*.test.tsx'], rollupTypes: true })
   ]
 })
