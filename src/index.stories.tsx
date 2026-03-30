@@ -1,7 +1,7 @@
 import React from 'react'
+import { action } from 'storybook/actions'
 import { createTheme, ThemeProvider } from '@mui/material'
-import { action } from '@storybook/addon-actions'
-import type { Meta, StoryFn } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react-vite'
 import { MuiOtpInput } from './index'
 
 export default {
@@ -26,7 +26,7 @@ export const Primary: StoryFn<typeof MuiOtpInput> = () => {
     <ThemeProvider theme={theme}>
       <MuiOtpInput
         length={5}
-        // eslint-disable-next-line jsx-a11y/no-autofocus
+        // eslint-disable-next-line jsx-a11y/no-autofocus -- intentional for story demo
         autoFocus
         sx={{ width: 300 }}
         gap={1}

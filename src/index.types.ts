@@ -8,7 +8,7 @@ type TextFieldProps = Omit<
 
 type BoxProps = Omit<MuiBoxProps, 'onChange' | 'onBlur'>
 
-export interface BaseMuiOtpInputProps {
+export type BaseMuiOtpInputProps = {
   value?: string
   length?: number
   autoFocus?: boolean

@@ -3,12 +3,12 @@ export function mergeRefs<T = any>(
   refs: (React.RefObject<T> | React.Ref<T> | undefined | null)[]
 ): React.RefCallback<T> {
   return (value) => {
-    refs.forEach((ref) => {
+    for (const ref of refs) {
       if (typeof ref === 'function') {
         ref(value)
       } else if (ref !== null && ref !== undefined) {
         ref.current = value
       }
-    })
+    }
   }
 }

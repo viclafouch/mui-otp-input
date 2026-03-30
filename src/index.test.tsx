@@ -42,7 +42,7 @@ describe('components/MuiOtpInput', () => {
   })
 
   test('should focus first input according to the autoFocus prop', () => {
-    // eslint-disable-next-line jsx-a11y/no-autofocus
+    // eslint-disable-next-line jsx-a11y/no-autofocus -- testing autoFocus behavior
     render(<MuiOtpInput value="abcd" autoFocus />)
     expect(testUtils.getInputElementByIndex(0)).toHaveFocus()
   })

@@ -12,6 +12,7 @@ export function useEvent<T extends AnyFunction>(callback?: T): T {
     ref.current = callback
   })
 
+  // eslint-disable-next-line no-restricted-syntax -- stable identity is the purpose of this hook
   return React.useCallback<AnyFunction>((...args) => {
     return ref.current?.(...args)
   }, []) as T

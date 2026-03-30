@@ -1,5 +1,6 @@
 import React from 'react'
 import TextFieldBox from '@components/TextFieldBox/TextFieldBox'
+import Box from '@mui/material/Box'
 import { KEYBOARD_KEY } from '@shared/constants/event'
 import {
   getFilledArray,
@@ -10,15 +11,9 @@ import {
 import { mergeRefs } from '@shared/helpers/react'
 import { split } from '@shared/helpers/string'
 import { useEvent } from '@shared/hooks/useEvent'
-import Box from '@mui/material/Box'
 import type { MuiOtpInputProps } from './index.types'
 
 export type { MuiOtpInputProps }
-
-type ValueSplitted = {
-  character: string
-  inputRef: React.RefObject<HTMLInputElement | null>
-}[]
 
 const defaultValidateChar = () => {
   return true
@@ -60,15 +55,12 @@ const MuiOtpInput = React.forwardRef(
       }
     }, [length, onCallbackEvent, matchIsCompletedEvent])
 
-    const valueSplitted: ValueSplitted = getFilledArray(
-      length as number,
-      (_, index) => {
-        return {
-          character: (value as string)[index] || '',
-          inputRef: React.createRef<HTMLInputElement>()
-        }
+    const valueSplitted = getFilledArray(length as number, (_, index) => {
+      return {
+        character: (value as string)[index] || '',
+        inputRef: React.createRef<HTMLInputElement>()
       }
-    )
+    })
 
     const getIndexByInputElement = (inputElement: HTMLInputElement) => {
       return valueSplitted.findIndex(({ inputRef }) => {
@@ -123,7 +115,6 @@ const MuiOtpInput = React.forwardRef(
     ) => {
       const currentInputIndex = getIndexByInputElement(event.target)
 
-      // Autofill from sms
       if (currentInputIndex === 0 && event.target.value.length > 1) {
         const { finalValue, isCompleted } = matchIsCompletedEvent(
           event.target.value
@@ -142,7 +133,6 @@ const MuiOtpInput = React.forwardRef(
       const initialChar = event.target.value[0] || ''
       let character = initialChar
 
-      // handle backspace so check character
       if (character && !matchIsCharIsValid(character, currentInputIndex)) {
         character = ''
       }
@@ -157,20 +147,14 @@ const MuiOtpInput = React.forwardRef(
         onComplete?.(finalValue)
       }
 
-      // Char is valid so go to next input
       if (character !== '') {
-        // handle when the filled input is before the input selected
         if (newValue.length - 1 < currentInputIndex) {
           selectInputByIndex(newValue.length)
         } else {
           manageCaretForNextInput(currentInputIndex)
         }
-
-        // Only for backspace so don't go to previous input if the char is invalid
-      } else if (initialChar === '') {
-        if (newValue.length <= currentInputIndex) {
-          selectInputByIndex(currentInputIndex - 1)
-        }
+      } else if (initialChar === '' && newValue.length <= currentInputIndex) {
+        selectInputByIndex(currentInputIndex - 1)
       }
     }
 
@@ -191,7 +175,6 @@ const MuiOtpInput = React.forwardRef(
           event.preventDefault()
 
           selectInputByIndex(currentInputIndex - 1)
-          // Caret is before the character and there is a character, so remove it
         } else if (isCaretBeforeChar) {
           event.preventDefault()
 
@@ -222,7 +205,6 @@ const MuiOtpInput = React.forwardRef(
     ) => {
       const content = event.clipboardData.getData('text/plain')
       const inputElement = event.target as HTMLInputElement
-      // Apply from where an input is empty or equal to the input selected
       const currentInputIndex = valueSplitted.findIndex(
         ({ character, inputRef }) => {
           return character === '' || inputRef.current === inputElement
@@ -288,7 +270,7 @@ const MuiOtpInput = React.forwardRef(
 
           return (
             <TextFieldBox
-              // eslint-disable-next-line jsx-a11y/no-autofocus
+              // eslint-disable-next-line jsx-a11y/no-autofocus -- OTP input requires autoFocus on first field for usability
               autoFocus={autoFocus ? index === 0 : false}
               autoComplete="one-time-code"
               value={character}
@@ -315,9 +297,6 @@ const MuiOtpInput = React.forwardRef(
                 TextFieldOnBlur?.(event)
                 handleBlur(event)
               }}
-              // We use index as the order can't be moved
-              // We can't use the value as it can be duplicated
-              // eslint-disable-next-line react/no-array-index-key
               key={index}
               {...restTextFieldsProps}
             />
