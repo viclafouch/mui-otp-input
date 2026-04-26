@@ -28,8 +28,7 @@ export const Primary: StoryFn<typeof MuiOtpInput> = () => {
         length={5}
         // eslint-disable-next-line jsx-a11y/no-autofocus -- intentional for story demo
         autoFocus
-        sx={{ width: 300 }}
-        gap={1}
+        sx={{ width: 300, gap: 1 }}
         onComplete={handleComplete}
         TextFieldsProps={(index: number) => {
           return {

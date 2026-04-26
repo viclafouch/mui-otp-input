@@ -19,6 +19,12 @@ const defaultValidateChar = () => {
   return true
 }
 
+const BASE_BOX_SX = {
+  display: 'flex',
+  gap: '20px',
+  alignItems: 'center'
+} as const
+
 const MuiOtpInput = React.forwardRef(
   (props: MuiOtpInputProps, propRef: MuiOtpInputProps['ref']) => {
     const {
@@ -31,6 +37,7 @@ const MuiOtpInput = React.forwardRef(
       validateChar = defaultValidateChar,
       className,
       onBlur,
+      sx,
       ...restBoxProps
     } = props
     const initialValue = React.useRef(value)
@@ -246,11 +253,11 @@ const MuiOtpInput = React.forwardRef(
       }
     }
 
+    const sxItems = sx ? [sx].flat() : []
+
     return (
       <Box
-        display="flex"
-        gap="20px"
-        alignItems="center"
+        sx={[BASE_BOX_SX, ...sxItems]}
         ref={propRef}
         className={`MuiOtpInput-Box ${className || ''}`}
         {...restBoxProps}

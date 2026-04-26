@@ -19,8 +19,10 @@ A One-Time Password (OTP) input component for MUI (Material UI), published on NP
 ## Deploy documentation
 
 ```
-cd docs && GIT_USER=viclafouch pnpm deploy
+cd docs && GIT_USER=viclafouch npx docusaurus deploy
 ```
+
+> **Important:** Never use `pnpm deploy` or `npm run deploy` — `pnpm deploy` is a pnpm workspace command, not Docusaurus. Always use `npx docusaurus deploy` directly.
 
 This builds the Docusaurus site and pushes to the `gh-pages` branch.
 
