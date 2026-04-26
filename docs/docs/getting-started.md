@@ -23,7 +23,7 @@ MUI OTP Input requires the following peer dependencies:
 
 - `@emotion/react` >= 11.13.0
 - `@emotion/styled` >= 11.13.0
-- `@mui/material` >= 7.0.0
+- `@mui/material` >= 7.0.0 or >= 9.0.0
 - `react` >= 18.0.0
 - `react-dom` >= 18.0.0
 
